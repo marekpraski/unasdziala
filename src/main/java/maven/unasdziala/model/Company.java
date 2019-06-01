@@ -23,6 +23,6 @@ public class Company {
 	public void setProjectsList(List<Project> projectsList) {
 		this.projectsList = projectsList;
 	}
-
+	
 
 }
