@@ -57,5 +57,8 @@ public class Work {
 		this.employee = employee;
 		this.project = project;
 	}
+	//dodałem pusty kontruktor, Marek Praski
+    public Work(){
 
+    }
 }
