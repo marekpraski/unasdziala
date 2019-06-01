@@ -23,7 +23,7 @@ public class Project {
 	public void setWorksList(List<Work> worksList) {
 		this.worksList = worksList;
 	}
-
+	
 	public Project(String name) {
 		this.name = name;
 		worksList = new ArrayList<>();
