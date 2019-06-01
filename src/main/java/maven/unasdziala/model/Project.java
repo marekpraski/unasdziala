@@ -26,7 +26,7 @@ public class Project {
 
 	public Project(String name) {
 		this.name = name;
-		worksList = new ArrayList<>();
+		worksList = new ArrayList();
 	}
 
 }

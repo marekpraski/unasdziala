@@ -35,8 +35,8 @@ public class Employee {
 
 	public Employee(String name) {
 		this.name = name;
-		worksList = new ArrayList<>();
-		filesList = new ArrayList<>();
+		worksList = new ArrayList();
+		filesList = new ArrayList();
 	}
 
 }
