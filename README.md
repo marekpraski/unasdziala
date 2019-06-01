@@ -2,37 +2,40 @@
 
 Software do raportowania czasu pracy. 
 
-## Getting Started
+### Dane wejściowe
 
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
-
-### Prerequisites
-
-Wszystkie rzeczy jakie potrzebujesz do odpalenia softwaru to:
+Wszystkie rzeczy jakie potrzebujesz do odpalenia software'u to:
 
 ```
 CMD
 Dane w formacie XLS
 ```
 
-## Running the tests
+## Odpalenie testów
 
-Explain how to run the automated tests for this system
+W konsoli CMD wybierz ścieżkę danych w formacie XLS.
+.
+.
+.
 
-### Break down into end to end tests
 
-Explain what these tests test and why
+### Raporty
 
-```
-Give an example
-```
-
-### And coding style tests
-
-Explain what these tests test and why
+Jako dane wyjściowe wybierz jakie raporty chcesz aby zostały wygenerowane.
 
 ```
-Give an example
+Raport1, Raport2, ... 
+```
+
+### Wykrycie błędów z niepoprawnymi danymi
+
+Błędne dane zostają wykryte oraz wypisane jak poniżej:
+
+```
+Plik: unasdziala/res/reporter-dane/2013/04/Sprawny_Eugeniusz-wielebledow.xls
+Projekt 1
+Line 24
+Incorrect date: 35.13.1564
 ```
 
 ## Wersja
