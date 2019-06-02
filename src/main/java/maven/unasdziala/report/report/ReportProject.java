@@ -17,14 +17,6 @@ import maven.unasdziala.report.model.ModelReportProject;
 
 public class ReportProject {
 	HashMap<Employee, Float> listOfEmployees = new HashMap<>();
-//
-//	public float sumProjectHours(Employee empl) {
-//		float a = 0;
-//		for (Work work : empl.getWorksList()) {
-//			a += work.getTimeSpent();
-//		}
-//		return a;
-//	}
 
 	public float sumProjectHours(Project project) {
 		float a = 0;
@@ -34,18 +26,25 @@ public class ReportProject {
 		return a;
 	}
 
-//	public float sumEmployeeProjectHours(Employee empl, Project proj) {
-//		float a = 0;
-//		for (Work work : empl.getWorksList()) {
-//			if (work.getProject().equals(proj)) {
-//				a += work.getTimeSpent();
-//			}
-//		}
-//		return a;
-//	}
+	public float sumProjectHours(Project project, int year) {
+		float a = 0;
+		for (Work work : project.getWorksList()) {
+			if (work.getDate().getYear() == year)
+				a += work.getTimeSpent();
+		}
+		return a;
+	}
+	
+	public float sumProjectHours(Project project, LocalDate beg, LocalDate end) {
+		float a = 0;
+		for (Work work : project.getWorksList()) {
+			if (work.getDate().isEqual(beg) ||work.getDate().isEqual(end) || (work.getDate().isAfter(beg) && work.getDate().isBefore(end)))
+				a += work.getTimeSpent();
+		}
+		return a;
+	}
 
 	private Set<Project> listOfProjects;
-	
 
 	public Set<Project> createEmployeeProjectList(Employee empl) {
 		Set<Project> listOfProjects = new HashSet<>();
@@ -55,24 +54,134 @@ public class ReportProject {
 		return listOfProjects;
 	}
 
-	ModelReportProject mrp = new ModelReportProject();
-	public void createReportProject(Project project, int year) {
-		LocalDate beg = LocalDate.of(year, 01, 01);
-		LocalDate end = LocalDate.of(year, 12, 31);
+	public List<String> createReportProject(Project project) {
+		ModelReportProject mrp = new ModelReportProject();
+//		LocalDate beg = LocalDate.of(year, 01, 01);
+//		LocalDate end = LocalDate.of(year, 12, 31);
 		mrp.appendList("Name: " + project.getName());
 		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project) + " 100%");
 		mrp.appendList("Employees participated: ");
 
 		this.createProjectEmployeeList(project);
-		
-		for(Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
-		    String name = entry.getKey().getName();
-		    Float value = entry.getValue();
-		    
-		    mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			String name = entry.getKey().getName();
+			Float value = entry.getValue();
+
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
 		}
-		
+		return mrp.getListForReport();
 	}
+
+	public List<String> createReportProject(Project project, int year) {
+		ModelReportProject mrp = new ModelReportProject();
+		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project, year) + " 100%");
+		mrp.appendList("Employees participated: ");
+
+		this.createProjectEmployeeList(project, year);
+
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			String name = entry.getKey().getName();
+			Float value = entry.getValue();
+
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+		}
+		return mrp.getListForReport();
+	}
+	
+	public List<String> createReportProject(Project project, LocalDate beg, LocalDate end) {
+		ModelReportProject mrp = new ModelReportProject();
+		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project, beg, end) + " 100%");
+		mrp.appendList("Employees participated: ");
+
+		this.createProjectEmployeeList(project, beg, end);
+
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			String name = entry.getKey().getName();
+			Float value = entry.getValue();
+
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+		}
+		return mrp.getListForReport();
+	}
+
+	private void createProjectEmployeeList(Project project) {
+
+		for (Work work : project.getWorksList()) {
+			Employee tempEmployee = work.getEmployee();
+			float tempTime = work.getTimeSpent();
+
+			if (this.listOfEmployees.containsKey(tempEmployee)) {
+				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
+
+				this.listOfEmployees.put(tempEmployee, finalTime);
+
+			} else {
+				this.listOfEmployees.put(tempEmployee, tempTime);
+			}
+
+		}
+
+	}
+
+	private void createProjectEmployeeList(Project project, int year) {
+
+		for (Work work : project.getWorksList()) {
+			Employee tempEmployee = work.getEmployee();
+			float tempTime = work.getTimeSpent();
+
+			if (this.listOfEmployees.containsKey(tempEmployee)) {
+				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
+				if (work.getDate().getYear() == year) {
+					this.listOfEmployees.put(tempEmployee, finalTime);
+				}
+			} else {
+				this.listOfEmployees.put(tempEmployee, tempTime);
+			}
+
+		}
+
+	}
+	
+	private void createProjectEmployeeList(Project project, LocalDate beg, LocalDate end) {
+
+		for (Work work : project.getWorksList()) {
+			Employee tempEmployee = work.getEmployee();
+			float tempTime = work.getTimeSpent();
+
+			if (this.listOfEmployees.containsKey(tempEmployee)) {
+				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
+				if (work.getDate().isEqual(beg) ||work.getDate().isEqual(end) || (work.getDate().isAfter(beg) && work.getDate().isBefore(end))) {
+					this.listOfEmployees.put(tempEmployee, finalTime);
+				}
+			} else {
+				this.listOfEmployees.put(tempEmployee, tempTime);
+			}
+
+		}
+
+	}
+	
+//	public float sumEmployeeProjectHours(Employee empl, Project proj) {
+//	float a = 0;
+//	for (Work work : empl.getWorksList()) {
+//		if (work.getProject().equals(proj)) {
+//			a += work.getTimeSpent();
+//		}
+//	}
+//	return a;
+//}
+
+//
+//	public float sumProjectHours(Employee empl) {
+//		float a = 0;
+//		for (Work work : empl.getWorksList()) {
+//			a += work.getTimeSpent();
+//		}
+//		return a;
+//	}
 
 //	public String nameAndSurnameCreator(Employee empl) {
 //		String[] nameParticles = empl.getName().split("_");
@@ -89,24 +198,6 @@ public class ReportProject {
 //		return listOfProjects;
 //	}
 
-	private void createProjectEmployeeList(Project project) {
-
-		for (Work work : project.getWorksList()) {
-			Employee tempEmployee = work.getEmployee();
-			float tempTime = work.getTimeSpent();
-			
-			if (this.listOfEmployees.containsKey(tempEmployee)) {
-				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
-				this.listOfEmployees.put(tempEmployee, finalTime);
-
-			} else {
-				this.listOfEmployees.put(tempEmployee, tempTime);
-			}
-
-		}
-
-	}
-
 //	private List<String> listOfFilesWithTimeLimit;
 //
 //	public List<String> createFilesListWithTimeLimit(Employee empl, LocalDate beg, LocalDate end) {
@@ -121,8 +212,6 @@ public class ReportProject {
 //		}
 //		return listOfFilesWithTimeLimit;
 //	}
-
-
 
 //	public void createReportEmployee(Employee empl) {
 //
@@ -142,9 +231,6 @@ public class ReportProject {
 //		}
 //
 //	}
-
-	
-
 
 //	public void createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 //
