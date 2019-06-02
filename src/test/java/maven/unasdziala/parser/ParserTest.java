@@ -10,11 +10,11 @@ public class ParserTest {
 
     @Test
     public void listFiles() {
-        Parser parser = new Parser("2012/");
-        parser.listFiles();
-        List<File> fileList=parser.getExcelFiles();
-        for(File file : fileList) {
-            System.out.println(file.getName());
-        }
+        Parser parser = new Parser("2012/01/Kowalski_Jan.xls");
+        parser.runParser();
+//        List<File> fileList=parser.getExcelFiles();
+//        for(File file : fileList) {
+//            System.out.println(file.getName());
+//        }
     }
 }

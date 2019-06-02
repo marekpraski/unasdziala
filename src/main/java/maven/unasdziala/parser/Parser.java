@@ -42,11 +42,15 @@ public class Parser {
 
     }
 
+    public Company getCompany() {
+        return company;
+    }
+
     public List<File> getExcelFiles() {
         return excelFiles;
     }
 
-    public void createEmployeeMap() {
+    private void createEmployeeMap() {
         List<SingleRowData> rowData = reader.getRowDataList();
         for(SingleRowData item : rowData) {
             String name = item.getEmployeeName();
@@ -58,7 +62,7 @@ public class Parser {
         }
 }
 
-    public void createProjectMap() {
+    private void createProjectMap() {
         List<SingleRowData> rowData = reader.getRowDataList();
         for(SingleRowData item : rowData) {
             String name = item.getProjectName();
@@ -73,7 +77,7 @@ public class Parser {
      * parse a complete list of Works from SingleRowData objects from ExcelReader
      * by running ExcelReader through all Excel files
      */
-    public void parseWorks() {
+    private void parseWorks() {
         Work work=null;
         List<SingleRowData> rowData = reader.getRowDataList();
         for(SingleRowData item : rowData) {
@@ -88,7 +92,15 @@ public class Parser {
             project.addWork(work);
             workList.add(work);
         }
+        List<Employee> employeeList = new ArrayList<Employee>(employeeMap.values());
+        List<Project> projectList = new ArrayList<Project>(projectMap.values());
+        company.setEmployeesList(employeeList);
+        company.setProjectsList(projectList);
+           }
 
-    }
-
+        public void runParser(){
+        createEmployeeMap();
+        createProjectMap();
+        parseWorks();
+        }
 }
