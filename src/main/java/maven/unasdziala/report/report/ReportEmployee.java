@@ -75,7 +75,7 @@ public class ReportEmployee {
 
 	ModelReportEmployee mre = new ModelReportEmployee();
 
-	public void createReportEmployee(Employee empl) {
+	public List<String> createReportEmployee(Employee empl) {
 		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
 		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
 		mre.appendList("Projects participated: ");
@@ -90,9 +90,10 @@ public class ReportEmployee {
 		for (String str : empl.getFilesList()) {
 			mre.appendList(str);
 		}
+		return mre.getListForReport();
 
 	}
-public void createReportEmployee(Employee empl, int year) {
+public List<String> createReportEmployee(Employee empl, int year) {
 		LocalDate beg = LocalDate.of(year, 01, 01);
 		LocalDate end = LocalDate.of(year, 12, 31);
 		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
@@ -109,10 +110,10 @@ public void createReportEmployee(Employee empl, int year) {
 		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
 			mre.appendList(str);
 		}
-
+		return mre.getListForReport();
 	}
 	
-	public void createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
+	public List<String> createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 		
 		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
 		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
@@ -128,6 +129,10 @@ public void createReportEmployee(Employee empl, int year) {
 		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
 			mre.appendList(str);
 		}
-
+		return mre.getListForReport();
+	}
+	
+	public void clearReportList() {
+		mre.getListForReport().clear();
 	}
 }
