@@ -84,6 +84,13 @@ public class Reader {
 			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
 		} else
 			System.out.println("Welcome Raports");
+		System.out.println(
+				"Welcome Raports: \n Chose parameter \n -r1 for report on hours worked by employer (all years) "
+				+ "\n -r2 for report on hours worked on projects (all years) "
+				+ "\n -r11 for report on hours worked by employer for YEAR with parameter -from (start date) and -to (end date)"
+				+ "\n -r22 for report on hours worked on projects for YEAR with parameter -from (start date) and -to (end date)");
+		
+		
 
 	}
 
