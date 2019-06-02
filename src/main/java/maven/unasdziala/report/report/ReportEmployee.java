@@ -16,8 +16,6 @@ import maven.unasdziala.report.model.ModelReportEmployee;
 
 public class ReportEmployee {
 
-	private Employee empl;
-
 	public float sumEmployeeHours(Employee empl) {
 		float a = 0;
 		for (Work work : empl.getWorksList()) {
@@ -66,10 +64,8 @@ public class ReportEmployee {
 	public List<String> createFilesListWithTimeLimit(Employee empl, LocalDate beg, LocalDate end){
 		listOfFilesWithTimeLimit = new ArrayList<>();
 		for(String str: empl.getFilesList() ){
-			String[] fileNameSplitted = str.split("/");
-			//File.separator
-			//fileNameSplitted[fileNameSplitted.length - 3]
-			LocalDate dateOfFile = LocalDate.of(Integer.parseInt(fileNameSplitted[-3]), Integer.parseInt(fileNameSplitted[-2]), 15);
+			String[] fileNameSplitted = str.split(File.separator);
+			LocalDate dateOfFile = LocalDate.of(Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 3]), Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 2]), 15);
 			if(dateOfFile.isAfter(beg) && dateOfFile.isBefore(end)){
 				listOfFilesWithTimeLimit.add(str);
 			}
@@ -96,8 +92,28 @@ public class ReportEmployee {
 		}
 
 	}
+public void createReportEmployee(Employee empl, int year) {
+		LocalDate beg = LocalDate.of(year, 01, 01);
+		LocalDate end = LocalDate.of(year, 12, 31);
+		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
+		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.appendList("Projects participated: ");
+		this.createEmployeeProjectList(empl, beg, end);
+		this.listOfProjects = this.createEmployeeProjectList(empl);
+		for (Project proj : listOfProjects) {
+			mre.appendList("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
+					+ " percent of all time spent: "
+					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
+		}
+		mre.appendList("List of files: ");
+		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
+			mre.appendList(str);
+		}
+
+	}
 	
 	public void createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
+		
 		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
 		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
 		mre.appendList("Projects participated: ");
