@@ -80,7 +80,7 @@ public class ReportEmployee {
 		//mre = new ModelReportEmployee();
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
 		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl);
 		this.listOfProjects = this.createEmployeeProjectList(empl);
@@ -101,7 +101,7 @@ public List<String> createReportEmployee(Employee empl, int year) {
 		LocalDate end = LocalDate.of(year, 12, 31);
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
 		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl, beg, end);
 		this.listOfProjects = this.createEmployeeProjectList(empl);
@@ -121,10 +121,10 @@ public List<String> createReportEmployee(Employee empl, int year) {
 	public List<String> createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
 		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl, beg, end);
-		this.listOfProjects = this.createEmployeeProjectList(empl);
+		this.listOfProjects = this.createEmployeeProjectList(empl, beg, end);
 		for (Project proj : listOfProjects) {
 			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
