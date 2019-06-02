@@ -9,6 +9,12 @@ import maven.unasdziala.report.report.ReportProject;
 public class Raport2print {
 
 	private ReportProject rp;
+	
+	
+
+	public Raport2print(ReportProject rp) {
+		this.rp = rp;
+	}
 
 	public void printReport2(List<Project> projectList) {
 		for (Project proj : projectList) {
