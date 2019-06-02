@@ -1,22 +1,18 @@
 package maven.unasdziala.parser;
 
-import maven.unasdziala.model.Work;
 import org.apache.poi.ss.usermodel.*;
 
 import java.io.File;
 import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
-import java.nio.file.Paths;
+import java.time.LocalDate;
+import java.time.ZoneId;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class ExcelReader {
     private Workbook wb;
     private String path;
-    private List<File> excelFiles;
 
     public ExcelReader() {
 
@@ -125,8 +121,8 @@ public class ExcelReader {
         return workTimes;
     }
 
-    public float getWorkTime(Row row) {
-        Double workTime=0.0;
+    private float getWorkTime(Row row) {
+        Double workTime = 0.0;
         Integer column = ColumnHeaders.CZAS.getColumnIndex();
         Cell cell = row.getCell(column);
         if (cell != null) {
@@ -138,39 +134,52 @@ public class ExcelReader {
         return workTime.floatValue();
     }
 
-    public List<Work> getWorkList() {
-        List<Work> worksInFile = new ArrayList();
+    private String getWork(Row row) {
+        String work = "";
+        Integer column = ColumnHeaders.ZADANIE.getColumnIndex();
+        Cell cell = row.getCell(column);
+        if (cell != null) {
+            cell.setCellType(CellType.STRING);
+            work = cell.getStringCellValue();
+        } else {
+            //handle error, to be implemented
+        }
+        return work;
+    }
+
+    private LocalDate getDate(Row row) {
+        Date date = null;
+        Integer column = ColumnHeaders.DATA.getColumnIndex();
+        Cell cell = row.getCell(column);
+        if (cell != null) {
+            cell.setCellType(CellType.NUMERIC);
+            date = cell.getDateCellValue();
+        } else {
+            //handle error, to be implemented
+        }
+        return date.toInstant()
+                .atZone(ZoneId.systemDefault())
+                .toLocalDate();
+    }
+
+    public List<SingleRowData> getRowDataList() {
+        List<SingleRowData> worksInFile = new ArrayList();
         for (Sheet sheet : wb) {
             for (Row row : sheet) {
                 if (row != null && row.getRowNum() > 0) {
-                    Work work= new Work();
-                    work.setTimeSpent(getWorkTime(row));
+                    SingleRowData rowData = new SingleRowData();
+                    rowData.setTimeSpent(getWorkTime(row));
+                    rowData.setWorkName(getWork(row));
+                    rowData.setDate(getDate(row));
+                    rowData.setEmployeeName(getEmployeeName());
+                    rowData.setProjectName(sheet.getSheetName());
+                    rowData.setFileName(path);
                     //to be completed
-                    worksInFile.add(work);
-                    } else {
-                        //handle error, to be implemented
-                    }
+                    worksInFile.add(rowData);
                 }
             }
-        return worksInFile;
-    }
-
-    public void listFiles() {
-        try {
-            List<File> allFiles = Files.walk(Paths.get(path))
-                    .filter(Files::isRegularFile)
-                    .map(Path::toFile)
-                    .collect(Collectors.toList());
-            for (File file : allFiles) {
-                String fileName = file.getName();
-                if (fileName.substring(fileName.lastIndexOf('.') + 1).equals("xls")) {
-                    excelFiles.add(file);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
         }
-
+        return worksInFile;
     }
 
 }

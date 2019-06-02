@@ -40,6 +40,7 @@ public class ExcelReaderTest {
     public void getYearTest() {
         ExcelReader reader = new ExcelReader();
         reader.setPath("2012/01/Kowalski_Jan.xls");
+        reader.createWorkBook();
         int year = reader.getYear();
         System.out.println(year);
     }
@@ -48,6 +49,7 @@ public class ExcelReaderTest {
     public void getDatesTest() {
         ExcelReader reader = new ExcelReader();
         reader.setPath("2012/01/Kowalski_Jan.xls");
+        reader.createWorkBook();
         List<Date> dates = reader.getAllDates();
         for (Date item : dates) {
             System.out.println(item);
@@ -58,6 +60,7 @@ public class ExcelReaderTest {
     public void getWorksTest() {
         ExcelReader reader = new ExcelReader();
         reader.setPath("2012/01/Kowalski_Jan.xls");
+        reader.createWorkBook();
         List<String> works = reader.getAllWorks();
         printStringList(works);
     }
@@ -66,20 +69,18 @@ public class ExcelReaderTest {
     public void getWorkTimessTest() {
         ExcelReader reader = new ExcelReader();
         reader.setPath("2012/01/Kowalski_Jan.xls");
+        reader.createWorkBook();
         List<Double> works = reader.getAllWorkTime();
         for (Double item : works) {
             System.out.println(item);
         }
     }
-
     @Test
-
-    public void listFiles() {
+    public void getsingleRowDataTest() {
         ExcelReader reader = new ExcelReader();
-        reader.setPath("2012/");
-        reader.listFiles();
-
-
-
+        reader.setPath("2012/01/Kowalski_Jan.xls");
+        reader.createWorkBook();
+        List<SingleRowData> works = reader.getRowDataList();
+        System.out.println("it works!");
     }
 }
