@@ -18,11 +18,7 @@ Odpowiednią strukturę plików XLS - nazwy projektów muszą być zakładkami a
 
 ## Odpalenie testów
 
-W konsoli CMD wybierz ścieżkę danych w formacie XLS - folder nadrzędny do folderu ROKU np. 
-
-RAPORTY/2010/01
-
-Program uruchamiasz w folderze raporty! 
+W konsoli CMD wybierz ścieżkę danych w formacie XLS. 
 .
 .
 .
@@ -33,24 +29,24 @@ Program uruchamiasz w folderze raporty!
 Jako dane wyjściowe wybierz jakie raporty chcesz aby zostały wygenerowane.
 
 ```
-Raport informujący o ilości godzin przepracowanych przez konkretnych pracowników - parametr w konsoli -r1, 
+Raport informujący o ilości godzin przepracowanych przez konkretnych pracowników - parametr w konsoli -r1 -path<arg>, 
 Czas pracy dla danego pracownika w raporcie r1 jest procentowo podzielony na projekty, w których uczestniczył.  
-Raport informujący o ile godzin zostało przepracowanych w danych projektach - parametr w konsoli -r2,
+Raport informujący o ile godzin zostało przepracowanych w danych projektach - parametr w konsoli -r2 -path<arg>,
 
 Następnie po parametrze raportu należy podać opcjonalnie: 
 - date początkową oraz date końcową,
 
 Komenta powinna wyglądać następująco: 
 - raport o ilości godzin przepracowanych przez pracowników (dla wszystkich lat - folderów ROK),
-                                              -r1 
+                                    -r1 -path "C:\Users\Student12\Desktop\reporter-dane"
 - raport informujący ile godzin zostało przepracowanych w danym projekcie (dla wszystkich lat - folderów ROK),
-                                              -r2
+                                    -r2 -path "C:\Users\Student12\Desktop\reporter-dane"
 - raport o ilości godzin przepracowanych przez pracowników w danym roku,
 r11, np. 
-                                           -r11 -2010
+                                    -r11 -path "C:\Users\Student12\Desktop\reporter-dane" -from 2010 -to 2012
 - raport informujący ile godzin zostało przepracowanych w danym projekcie w danym roku,
 r22, np. 
-                                           -r22 -2010
+                                    -r22 -path "C:\Users\Student12\Desktop\reporter-dane" -from 2010 to 2012
 ```
 
 ### Przykładowe wyniki dla raportów: 
@@ -93,4 +89,7 @@ Alfa.
 ## Licencja
 
 Projekt ten jest na licencji U NAS DZIAŁA - TEAM.
+
+
+	
 
