@@ -99,40 +99,44 @@ public class ReportEmployee {
 public List<String> createReportEmployee(Employee empl, int year) {
 		LocalDate beg = LocalDate.of(year, 01, 01);
 		LocalDate end = LocalDate.of(year, 12, 31);
-		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
-		mre.appendList("Projects participated: ");
+		List<String> mre = new ArrayList<>();
+		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl, beg, end);
 		this.listOfProjects = this.createEmployeeProjectList(empl);
 		for (Project proj : listOfProjects) {
-			mre.appendList("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
+			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
 		}
-		mre.appendList("List of files: ");
+		mre.add("List of files: ");
 		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
-			mre.appendList(str);
+			mre.add(str);
 		}
-		return mre.getListForReport();
+		mre.add("Period: " + beg + " - " + end);
+		return mre;
 	}
 	
 	public List<String> createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
-		
-		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
-		mre.appendList("Projects participated: ");
+		List<String> mre = new ArrayList<>();
+		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl, beg, end);
 		this.listOfProjects = this.createEmployeeProjectList(empl);
 		for (Project proj : listOfProjects) {
-			mre.appendList("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
+			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
 		}
-		mre.appendList("List of files: ");
+		mre.add("List of files: ");
 		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
-			mre.appendList(str);
+			mre.add(str);
 		}
-		return mre.getListForReport();
+		mre.add("Period: " + beg + " - " + end);
+		
+		return mre;
 	}
 	
 	
