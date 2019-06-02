@@ -13,7 +13,9 @@ import org.apache.commons.cli.ParseException;
 import maven.unasdziala.model.Company;
 import maven.unasdziala.parser.Parser;
 import maven.unasdziala.print.Raport1print;
+import maven.unasdziala.print.Raport2print;
 import maven.unasdziala.report.report.ReportEmployee;
+import maven.unasdziala.report.report.ReportProject;
 
 public class Reader {
 	public static void main(String[] args) throws ParseException {
@@ -49,6 +51,18 @@ public class Reader {
 
 		} else if (cmd.hasOption("path") & cmd.hasOption("r2")) {
 			System.out.println("raport number 2");
+			
+			String path = cmd.getOptionValue("path");
+			
+			Parser excelParser = new Parser(path);
+			excelParser.runParser();
+
+			Company comp = excelParser.getCompany();
+			ReportProject reportProject = new ReportProject();
+			Raport2print r2p = new Raport2print(reportProject);
+			r2p.printReport2(comp.getProjectsList());
+			
+			
 		}
 
 		else if (cmd.hasOption("path") & cmd.hasOption("r11") & cmd.hasOption("y")) {
@@ -66,8 +80,10 @@ public class Reader {
 		else if (cmd.hasOption("path") & cmd.hasOption("r111") & cmd.hasOption("from") & cmd.hasOption("to")) {
 			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
 			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
+			
+			String path = cmd.getOptionValue("path");
 
-			Parser excelParser = new Parser("Kowalski_Jan.xls");
+			Parser excelParser = new Parser(path);
 			excelParser.runParser();
 
 			Company comp = excelParser.getCompany();
