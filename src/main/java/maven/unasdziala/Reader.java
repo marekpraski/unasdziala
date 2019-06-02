@@ -13,7 +13,9 @@ import org.apache.commons.cli.ParseException;
 import maven.unasdziala.model.Company;
 import maven.unasdziala.parser.Parser;
 import maven.unasdziala.print.Raport1print;
+import maven.unasdziala.print.Raport2print;
 import maven.unasdziala.report.report.ReportEmployee;
+import maven.unasdziala.report.report.ReportProject;
 
 public class Reader {
 	public static void main(String[] args) throws ParseException {
@@ -21,11 +23,12 @@ public class Reader {
 		Options options = new Options();
 
 		options.addOption("r1", false, "View raport number 1").addOption("r2", false, "View raport number 2")
-				.addOption("r11", false, "View raport number 1/Year")
-				.addOption("r22", false, "View raport number 2/Year")
-				.addOption("r111", false, "View raport number 1/From Date to Date")
-				.addOption("r222", false, "View raport number 2/From Date to Date").addOption("path", true, "Path")
-				.addOption("y", true, "Year").addOption("from", true, "First date").addOption("to", true, "End date");
+		.addOption("path", true, "Path");
+//				.addOption("r11", false, "View raport number 1")
+//				.addOption("r22", false, "View raport number 2");
+//				.addOption("r111", false, "View raport number 1/From Date to Date")
+//				.addOption("r222", false, "View raport number 2/From Date to Date").addOption("path", true, "Path")
+//				.addOption("y", true, "Year").addOption("from", true, "First date").addOption("to", true, "End date");
 		HelpFormatter formatter = new HelpFormatter();
 
 		final PrintWriter writer = new PrintWriter(System.out);
@@ -49,48 +52,53 @@ public class Reader {
 
 		} else if (cmd.hasOption("path") & cmd.hasOption("r2")) {
 			System.out.println("raport number 2");
-		}
 
-		else if (cmd.hasOption("path") & cmd.hasOption("r11") & cmd.hasOption("y")) {
-			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
-			System.out.println("Report 1 by Date" + cmd.getOptionValue("y"));
+			String path = cmd.getOptionValue("path");
 
-		}
-
-		else if (cmd.hasOption("path") & cmd.hasOption("r22") & cmd.hasOption("y")) {
-			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
-			System.out.println("Report 2 and Date" + cmd.getOptionValue("y"));
-
-		}
-
-		else if (cmd.hasOption("path") & cmd.hasOption("r111") & cmd.hasOption("from") & cmd.hasOption("to")) {
-			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
-			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
-
-			Parser excelParser = new Parser("Kowalski_Jan.xls");
+			Parser excelParser = new Parser(path);
 			excelParser.runParser();
 
 			Company comp = excelParser.getCompany();
-			ReportEmployee reportEmployee = new ReportEmployee();
-			Raport1print r1p = new Raport1print(reportEmployee);
-			r1p.printReport1(comp.getEmployeesList(), begindate, enddate);
+			ReportProject reportProject = new ReportProject();
+			Raport2print r2p = new Raport2print(reportProject);
+			r2p.printReport2(comp.getProjectsList());
+
 		}
 
-		else if (cmd.hasOption("path") & cmd.hasOption("r222") & cmd.hasOption("a") & cmd.hasOption("b")) {
-
-			System.out.println("First Date2" + cmd.getOptionValue("from"));
-			System.out.println("End Date2" + cmd.getOptionValue("to"));
-			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
-			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
-		} else
-			System.out.println("Welcome Raports");
-		System.out.println(
-				"Welcome Raports: \n Chose parameter \n -r1 for report on hours worked by employer (all years) "
-				+ "\n -r2 for report on hours worked on projects (all years) "
-				+ "\n -r11 for report on hours worked by employer for YEAR with parameter -from (start date) and -to (end date)"
-				+ "\n -r22 for report on hours worked on projects for YEAR with parameter -from (start date) and -to (end date)");
-		
-		
+//		else if (cmd.hasOption("path") & cmd.hasOption("r11") & cmd.hasOption("y")) {
+//			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
+//			System.out.println("Report 1 by Date" + cmd.getOptionValue("y"));
+//
+//		}
+//
+//		else if (cmd.hasOption("path") & cmd.hasOption("r22") & cmd.hasOption("y")) {
+//			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
+//			System.out.println("Report 2 and Date" + cmd.getOptionValue("y"));
+//
+//		}
+//
+//		else if (cmd.hasOption("path") & cmd.hasOption("r111") & cmd.hasOption("from") & cmd.hasOption("to")) {
+//			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
+//			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
+//
+//			String path = cmd.getOptionValue("path");
+//
+//			Parser excelParser = new Parser(path);
+//			excelParser.runParser();
+//
+//			Company comp = excelParser.getCompany();
+//			ReportEmployee reportEmployee = new ReportEmployee();
+//			Raport1print r1p = new Raport1print(reportEmployee);
+//			r1p.printReport1(comp.getEmployeesList(), begindate, enddate);
+//		}
+//
+//		else if (cmd.hasOption("path") & cmd.hasOption("r222") & cmd.hasOption("a") & cmd.hasOption("b")) {
+//
+//			System.out.println("First Date2" + cmd.getOptionValue("from"));
+//			System.out.println("End Date2" + cmd.getOptionValue("to"));
+//			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
+//			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
+//		}
 
 	}
 

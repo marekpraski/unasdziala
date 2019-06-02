@@ -102,6 +102,8 @@ public class ReportEmployee {
 	public List<String> createReportEmployee(Employee empl) {
 		// mre = new ModelReportEmployee();
 		List<String> mre = new ArrayList<>();
+		LocalDate beg = LocalDate.now();
+		LocalDate end = LocalDate.of(1900, 01, 01);
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
 		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
 		mre.add("Projects participated: ");
@@ -111,11 +113,22 @@ public class ReportEmployee {
 			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
+			
+			for (Work work : proj.getWorksList()) {
+				if (work.getDate().isBefore(beg)) {
+					beg = work.getDate();
+				}
+				if (work.getDate().isAfter(end)) {
+					end = work.getDate();
+				}
+			}
 		}
 		mre.add("List of files: ");
 		for (String str : empl.getFilesList()) {
 			mre.add(str);
 		}
+		
+		mre.add("Period: " + beg + " - " + end);
 		return mre;
 
 	}
