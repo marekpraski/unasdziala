@@ -20,7 +20,7 @@ public class ParserTest {
 
     @Test
     public void testLister() {
-        FileLister lister = new FileLister("C:\\Users\\student14\\IdeaProjects\\unasdziala\\2012\\");
+        FileLister lister = new FileLister("C:\\Users\\student14\\IdeaProjects\\unasdziala\\");
         List<String> resList = lister.getResultList();
 
         for (String file : resList) {
