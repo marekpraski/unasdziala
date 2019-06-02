@@ -25,6 +25,10 @@ public class Employee {
 		this.worksList = worksList;
 	}
 
+	public void addWork(Work work) {
+	    worksList.add(work);
+    }
+
 	public List<String> getFilesList() {
 		return filesList;
 	}
