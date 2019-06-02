@@ -113,6 +113,7 @@ public class ReportEmployee {
 			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
+			
 			for (Work work : proj.getWorksList()) {
 				if (work.getDate().isBefore(beg)) {
 					beg = work.getDate();
