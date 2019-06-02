@@ -70,6 +70,11 @@ public class ReportProject {
 
 			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
 		}
+		
+for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			
+			mrp.getListForReport().addAll(entry.getKey().getFilesList());
+		}
 		return mrp.getListForReport();
 	}
 
@@ -87,6 +92,11 @@ public class ReportProject {
 
 			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
 		}
+		
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			
+			mrp.getListForReport().addAll(entry.getKey().getFilesList());
+		}
 		return mrp.getListForReport();
 	}
 	
@@ -103,6 +113,10 @@ public class ReportProject {
 			Float value = entry.getValue();
 
 			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+		}
+			for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+			
+			mrp.getListForReport().addAll(entry.getKey().getFilesList());
 		}
 		return mrp.getListForReport();
 	}
