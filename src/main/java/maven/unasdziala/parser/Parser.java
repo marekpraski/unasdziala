@@ -89,6 +89,7 @@ public class Parser {
             work.setEmployee(employee);
             employee.addWork(work);
             Project project = projectMap.get(item.getProjectName());
+            work.setProject(project);
             project.addWork(work);
             workList.add(work);
         }
