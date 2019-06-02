@@ -52,6 +52,23 @@ r11 2010
 r22, np. 
 r22 2010
 
+```
+
+### Przykładowe wyniki dla raportów: 
+
+```
+Raport r1:
+
+This is raport number 1
+Name and surname: Jan Kowalski
+Amount of hours worked: 46.0 100%
+Projects participated: 
+Project name: Projekt1 hours: 28.0 percent of all time spent: 60.869564%
+Project name: Projekt2 hours: 18.0 percent of all time spent: 39.130436%
+List of files: 
+
+Raport r2: 
+
 
 ```
 
