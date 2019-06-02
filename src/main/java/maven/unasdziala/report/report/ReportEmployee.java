@@ -18,8 +18,8 @@ public class ReportEmployee {
 
 	public float sumEmployeeHours(Employee empl, LocalDate beg, LocalDate end) {
 		float a = 0;
-		if (work.getDate().isAfter(beg) && work.getDate().isBefore(end)) {
 			for (Work work : empl.getWorksList()) {
+			if (work.getDate().isAfter(beg) && work.getDate().isBefore(end)) {
 				a += work.getTimeSpent();
 			}
 		}
@@ -145,14 +145,14 @@ public class ReportEmployee {
 	public List<String> createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl, beg, end));
 		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl, beg, end);
 		this.listOfProjects = this.createEmployeeProjectList(empl, beg, end);
 		for (Project proj : listOfProjects) {
 			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj, beg, end)
 					+ " percent of all time spent: "
-					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
+					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl, beg, end)) + "%");
 		}
 		mre.add("List of files: ");
 		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
