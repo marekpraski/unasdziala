@@ -1,14 +1,42 @@
 package maven.unasdziala.print;
 
-import java.io.FileWriter;
-import java.io.IOException;
-import java.util.ArrayList;
+import java.time.LocalDate;
+import java.util.List;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVPrinter;
-
+import maven.unasdziala.model.Project;
+import maven.unasdziala.report.report.ReportProject;
 
 public class Raport2print {
+
+	private ReportProject rp;
+
+	public void printReport1(List<Project> projectList) {
+		for (Project proj : projectList) {
+			for (String str : rp.createReportProject(proj)) {
+				System.out.println(str);
+			}
+			rp.clearReportList();
+		}
+	}
+
+	public void printReport1(List<Project> projectList, int year) {
+		for (Project proj : projectList) {
+			for (String str : rp.createReportProject(proj, year)) {
+				System.out.println(str);
+			}
+			rp.clearReportList();
+		}
+	}
+
+	public void printReport1(List<Project> projectList, LocalDate beg, LocalDate end) {
+		for (Project proj : projectList) {
+			for (String str : rp.createReportProject(proj, beg, end)) {
+				System.out.println(str);
+			}
+			rp.clearReportList();
+		}
+	}
+
 //	//Delimiter used in CSV file
 //    private static final String NEW_LINE_SEPARATOR = "\n";
 //
@@ -62,4 +90,4 @@ public class Raport2print {
 //     }
 // }
 //}
- }
+}
