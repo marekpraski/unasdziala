@@ -30,8 +30,15 @@ public class FileLister {
 		File[] files = folder.listFiles();
 
 		for (File file : files) {
+			String appendix =null;
 			if (file.isFile()) {
-				if(file.getName().contains(".xlsx") || file.getName().contains(".xls") || file.getName().contains(".xlsb")) {
+				int pointPosition =  file.getName().lastIndexOf('.');
+				if (pointPosition>0) {
+					appendix = file.getName().substring(pointPosition);
+				}
+				if((file.getName().contains(".xlsx") && appendix.length()==4) ||
+						(file.getName().contains(".xls") && appendix.length()==3)
+						|| (file.getName().contains(".xlsb") && appendix.length()==4)) {
 					
 					this.resultList.add(file.getAbsolutePath());
 					
