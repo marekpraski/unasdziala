@@ -22,13 +22,13 @@ public class Reader {
 
 		options.addOption("r1", false, "View raport number 1")
 				.addOption("r2", false, "View raport number 2")
-				.addOption("r11", true, "View raport number 1/Year")
-				.addOption("r22", true, "View raport number 2/Year")
-				.addOption("r111", true, "View raport number 1/Z")
-				.addOption("r222", true, "View raport number 2/Z")
-				.addOption("r", true, "Year")
-				.addOption("a", true, "First date")
-		        .addOption("b", true, "End date");
+				.addOption("r11", false, "View raport number 1/Year")
+				.addOption("r22", false, "View raport number 2/Year")
+				.addOption("r111", false, "View raport number 1/Z")
+				.addOption("r222", false, "View raport number 2/Z")
+				.addOption("y", true, "Year")
+				.addOption("from", true, "First date")
+		        .addOption("to", true, "End date");
 
 		CommandLineParser parser = new DefaultParser();
 
@@ -51,29 +51,29 @@ public class Reader {
 			System.out.println("raport number 2");
 		}
 	
-		if(cmd.hasOption("r11")&cmd.hasOption("r")){
-			Integer year = Integer.parseInt(cmd.getOptionValue("r"));
-			System.out.println("Report 1 by Date" + cmd.getOptionValue("r"));
+		if(cmd.hasOption("r11")&cmd.hasOption("y")){
+			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
+			System.out.println("Report 1 by Date" + cmd.getOptionValue("y"));
 			
-		}	if(cmd.hasOption("r22")&cmd.hasOption("r")){
-			Integer year = Integer.parseInt(cmd.getOptionValue("r"));
-			System.out.println("Report 2 and Date" + cmd.getOptionValue("r"));
+		}	if(cmd.hasOption("r22")&cmd.hasOption("y")){
+			Integer year = Integer.parseInt(cmd.getOptionValue("y"));
+			System.out.println("Report 2 and Date" + cmd.getOptionValue("y"));
 			
 		}
 			
-		if (cmd.hasOption("r111")&cmd.hasOption("a")&cmd.hasOption("b")) {
+		if (cmd.hasOption("r111")&cmd.hasOption("from")&cmd.hasOption("to")) {
 
-			System.out.println("First Date1" + cmd.getOptionValue("a"));
-			System.out.println("End Date1" + cmd.getOptionValue("b"));
-			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("a"));
-			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("b"));
+			System.out.println("First Date1" + cmd.getOptionValue("from"));
+			System.out.println("End Date1" + cmd.getOptionValue("to"));
+			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
+			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
 		}
 		if (cmd.hasOption("a")&cmd.hasOption("b")&cmd.hasOption("r222")) {
 
-			System.out.println("First Date2" + cmd.getOptionValue("a"));
-			System.out.println("End Date2" + cmd.getOptionValue("b"));
-			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("a"));
-			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("b"));
+			System.out.println("First Date2" + cmd.getOptionValue("from"));
+			System.out.println("End Date2" + cmd.getOptionValue("to"));
+			LocalDate begindate = LocalDate.parse(cmd.getOptionValue("from"));
+			LocalDate enddate = LocalDate.parse(cmd.getOptionValue("to"));
 		}
 		
 		
