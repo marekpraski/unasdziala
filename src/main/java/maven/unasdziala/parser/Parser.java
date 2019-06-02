@@ -1,7 +1,9 @@
 package maven.unasdziala.parser;
 
+import maven.unasdziala.model.Company;
 import maven.unasdziala.model.Employee;
 import maven.unasdziala.model.Project;
+import maven.unasdziala.model.Work;
 
 import java.io.File;
 import java.io.IOException;
@@ -9,6 +11,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -19,6 +22,12 @@ public class Parser {
     private Map<String,Employee> employeeMap;
     private Map<String, Project> projectMap;
     private ExcelReader reader;
+    private List<Work> workList;
+    private Company company;
+
+    public List<Work> getWorkList() {
+        return workList;
+    }
 
     public Parser(String path) {
         this.path = path;
@@ -26,54 +35,60 @@ public class Parser {
         reader = new ExcelReader();
         reader.setPath(path);
         reader.createWorkBook();
+        employeeMap = new HashMap<>();
+        projectMap = new HashMap();
+        workList = new ArrayList<>();
+        company = new Company();
+
     }
 
     public List<File> getExcelFiles() {
         return excelFiles;
     }
 
-    public void listFiles() {
-        try {
-            List<File> allFiles = Files.walk(Paths.get(path))
-                    .filter(Files::isRegularFile)
-                    .map(Path::toFile)
-                    .collect(Collectors.toList());
-            for (File file : allFiles) {
-                String fileName = file.getName();
-                if (fileName.substring(fileName.lastIndexOf('.') + 1).equals("xls")) {
-                    excelFiles.add(file);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
     public void createEmployeeMap() {
         List<SingleRowData> rowData = reader.getRowDataList();
         for(SingleRowData item : rowData) {
             String name = item.getEmployeeName();
+            if (!employeeMap.containsKey(name)) {
+                Employee employee = new Employee(name);
+                employeeMap.put(name,employee);
+            }
+
         }
-        reader.getEmployeeName();
 }
+
+    public void createProjectMap() {
+        List<SingleRowData> rowData = reader.getRowDataList();
+        for(SingleRowData item : rowData) {
+            String name = item.getProjectName();
+            if (!projectMap.containsKey(name)) {
+                Project project = new Project(name);
+                projectMap.put(name,project);
+            }
+
+        }
+    }
     /**
      * parse a complete list of Works from SingleRowData objects from ExcelReader
      * by running ExcelReader through all Excel files
      */
-    public void paseWorks() {
+    public void parseWorks() {
+        Work work=null;
+        List<SingleRowData> rowData = reader.getRowDataList();
+        for(SingleRowData item : rowData) {
+            work = new Work();
+            work.setDate(item.getDate());
+            work.setName(item.getWorkName());
+            work.setTimeSpent(item.getTimeSpent());
+            Employee employee = employeeMap.get(item.getEmployeeName());
+            work.setEmployee(employee);
+            employee.addWork(work);
+            Project project = projectMap.get(item.getProjectName());
+            project.addWork(work);
+            workList.add(work);
+        }
 
     }
 
-    /**
-     * parse a list of Project objects from Works
-     */
-    public void parseProjects() {
-
-    }
-
-    /**
-     * parse a list of Employee objects from Works
-     */
-    public void parseEmployees() {
-
-    }
 }

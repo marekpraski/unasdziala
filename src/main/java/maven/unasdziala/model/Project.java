@@ -28,5 +28,8 @@ public class Project {
 		this.name = name;
 		worksList = new ArrayList();
 	}
+	public void addWork(Work work) {
+		worksList.add(work);
+	}
 
 }
