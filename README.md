@@ -1,12 +1,14 @@
 # Pracownia Projektowa - U NAS DZIAŁA
 
 Software do raportowania czasu pracy. 
+Format Runnable JAR.
 
 ### Dane wejściowe
 
 Wszystkie rzeczy jakie potrzebujesz do odpalenia software'u to:
 
 ```
+unasdziala.jar
 CMD,
 Dane w formacie XLS,
 Odpowiednia struktura folderów, w których znajdują się dane w formacie XLS - ROK/MIESIĄC np. 2010/01,
@@ -18,7 +20,9 @@ Odpowiednią strukturę plików XLS - nazwy projektów muszą być zakładkami a
 
 ## Odpalenie testów
 
-W konsoli CMD wybierz ścieżkę danych w formacie XLS. 
+W uruchom CMD w lokalizacji w której znajduje się unasdziala.jar poprzez komende: 
+
+java -jar unasdziala.jar 
 .
 .
 .
