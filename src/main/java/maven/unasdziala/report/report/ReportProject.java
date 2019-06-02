@@ -1,21 +1,22 @@
-//package maven.unasdziala.report.report;
-//
-//import java.io.File;
-//import java.time.LocalDate;
-//import java.util.ArrayList;
-//import java.util.HashMap;
-//import java.util.HashSet;
-//import java.util.List;
-//import java.util.Map;
-//import java.util.Set;
-//import maven.unasdziala.model.Company;
-//import maven.unasdziala.model.Employee;
-//import maven.unasdziala.model.Project;
-//import maven.unasdziala.model.Work;
-//import maven.unasdziala.report.model.ModelReportEmployee;
-//import maven.unasdziala.report.model.ModelReportProject;
-//
-//public class ReportProject {
+package maven.unasdziala.report.report;
+
+import java.io.File;
+import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
+import maven.unasdziala.model.Company;
+import maven.unasdziala.model.Employee;
+import maven.unasdziala.model.Project;
+import maven.unasdziala.model.Work;
+import maven.unasdziala.report.model.ModelReportEmployee;
+import maven.unasdziala.report.model.ModelReportProject;
+
+public class ReportProject {
+	HashMap<Employee, Float> listOfEmployees = new HashMap<>();
 //
 //	public float sumProjectHours(Employee empl) {
 //		float a = 0;
@@ -24,15 +25,15 @@
 //		}
 //		return a;
 //	}
-//	
-//	public float sumProjectHours(Project project) {
-//		float a = 0;
-//		for (Work work : project.getWorksList()) {
-//			a += work.getTimeSpent();
-//		}
-//		return a;
-//	}
-//
+
+	public float sumProjectHours(Project project) {
+		float a = 0;
+		for (Work work : project.getWorksList()) {
+			a += work.getTimeSpent();
+		}
+		return a;
+	}
+
 //	public float sumEmployeeProjectHours(Employee empl, Project proj) {
 //		float a = 0;
 //		for (Work work : empl.getWorksList()) {
@@ -42,22 +43,42 @@
 //		}
 //		return a;
 //	}
-//
-//	private Set<Project> listOfProjects;
-//
+
+	private Set<Project> listOfProjects;
+	
+
+	public Set<Project> createEmployeeProjectList(Employee empl) {
+		Set<Project> listOfProjects = new HashSet<>();
+		for (Work work : empl.getWorksList()) {
+			listOfProjects.add(work.getProject());
+		}
+		return listOfProjects;
+	}
+
+	ModelReportProject mrp = new ModelReportProject();
+	public void createReportProject(Project project, int year) {
+		LocalDate beg = LocalDate.of(year, 01, 01);
+		LocalDate end = LocalDate.of(year, 12, 31);
+		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project) + " 100%");
+		mrp.appendList("Employees participated: ");
+
+		this.createProjectEmployeeList(project);
+		
+		for(Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+		    String name = entry.getKey().getName();
+		    Float value = entry.getValue();
+		    
+		    mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+		}
+		
+	}
+
 //	public String nameAndSurnameCreator(Employee empl) {
 //		String[] nameParticles = empl.getName().split("_");
 //		return nameParticles[1] + " " + nameParticles[0];
 //	}
-//
-//	public Set<Project> createEmployeeProjectList(Employee empl) {
-//		Set<Project> listOfProjects = new HashSet<>();
-//		for (Work work : empl.getWorksList()) {
-//			listOfProjects.add(work.getProject());
-//		}
-//		return listOfProjects;
-//	}
-//
+
 //	public Set<Project> createEmployeeProjectList(Employee empl, LocalDate beg, LocalDate end) {
 //		Set<Project> listOfProjects = new HashSet<>();
 //		for (Work work : empl.getWorksList()) {
@@ -67,12 +88,25 @@
 //		}
 //		return listOfProjects;
 //	}
-//	private void createProjectEmployeeList(Project project) {
-//		// TODO Auto-generated method stub
-//		
-//	}
-//
-//
+
+	private void createProjectEmployeeList(Project project) {
+
+		for (Work work : project.getWorksList()) {
+			Employee tempEmployee = work.getEmployee();
+			float tempTime = work.getTimeSpent();
+			
+			if (this.listOfEmployees.containsKey(tempEmployee)) {
+				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
+				this.listOfEmployees.put(tempEmployee, finalTime);
+
+			} else {
+				this.listOfEmployees.put(tempEmployee, tempTime);
+			}
+
+		}
+
+	}
+
 //	private List<String> listOfFilesWithTimeLimit;
 //
 //	public List<String> createFilesListWithTimeLimit(Employee empl, LocalDate beg, LocalDate end) {
@@ -87,9 +121,9 @@
 //		}
 //		return listOfFilesWithTimeLimit;
 //	}
-//
-//	ModelReportProject mrp = new ModelReportProject();
-//
+
+
+
 //	public void createReportEmployee(Employee empl) {
 //
 //		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
@@ -108,28 +142,10 @@
 //		}
 //
 //	}
-//
-//	public void createReportProject(Project project, int year) {
-//		LocalDate beg = LocalDate.of(year, 01, 01);
-//		LocalDate end = LocalDate.of(year, 12, 31);
-//		mrp.appendList("Name: " + project.getName());
-//		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project) + " 100%");
-//		mrp.appendList("Employees participated: ");
-//		this.createProjectEmployeeList(project);
-//		this.listOfProjects = this.createEmployeeProjectList(empl);
-//		for (Project proj : listOfProjects) {
-//			mre.appendList("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
-//					+ " percent of all time spent: "
-//					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumProjectHours(empl)) + "%");
-//		}
-//		mre.appendList("List of files: ");
-//		for (String str : this.createFilesListWithTimeLimit(empl, beg, end)) {
-//			mre.appendList(str);
-//		}
-//
-//	}
-//
-//	
+
+	
+
+
 //	public void createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 //
 //		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
@@ -148,48 +164,48 @@
 //		}
 //
 //	}
+
+//	private int tempDate = 2012;
 //
-////	private int tempDate = 2012;
-////
-//////	private Set<Project> projectSet = new HashSet<>();
-////
-////	private Map<Project, Float> projectMap = new HashMap<>();
-////	private Map<Employee, Float> employeeMap = new HashMap<>();
-////
-////	public float getProjectTimeSpent(Project project) {
-////		return 0;
-////	}
-////
-////	public float getProjectEmployeeTimeSpent(Project project, Employee employee) {
-////		return 0;
-////	}
-////
-////	public void reportNewProject(Project project) {
-////		if (!projectMap.containsKey(project)) {
-////			projectMap.put(project, getProjectTimeSpent(project));
-////		}
-////	}
-////
-////	public void reportNewProjectEmployee(Employee employee, Project project) {
-////		if (!employeeMap.containsKey(employee)) {
-////			employeeMap.put(employee, getProjectEmployeeTimeSpent(project, employee));
-////		}
-////	}
-////
-////	public ModelReportProject generateModel(Company company, LocalDate begining, LocalDate ending) {
-////		begining = LocalDate.of(tempDate, 1, 1);
-////		ending = LocalDate.of(tempDate, 12, 31);
-////
-////		for (Project project : company.getProjectsList()) {
-////			for (Work work : project.getWorksList()) {
-////				if (work.getDate().isAfter(begining) && (work.getDate().isBefore(ending))) {
-////					reportNewProject(project);
-////					reportNewProjectEmployee(work.getEmployee(), project);
-////				}
-////			}
-////
-////		}
-////		return null;
-////	}
+////	private Set<Project> projectSet = new HashSet<>();
 //
-//}
+//	private Map<Project, Float> projectMap = new HashMap<>();
+//	private Map<Employee, Float> employeeMap = new HashMap<>();
+//
+//	public float getProjectTimeSpent(Project project) {
+//		return 0;
+//	}
+//
+//	public float getProjectEmployeeTimeSpent(Project project, Employee employee) {
+//		return 0;
+//	}
+//
+//	public void reportNewProject(Project project) {
+//		if (!projectMap.containsKey(project)) {
+//			projectMap.put(project, getProjectTimeSpent(project));
+//		}
+//	}
+//
+//	public void reportNewProjectEmployee(Employee employee, Project project) {
+//		if (!employeeMap.containsKey(employee)) {
+//			employeeMap.put(employee, getProjectEmployeeTimeSpent(project, employee));
+//		}
+//	}
+//
+//	public ModelReportProject generateModel(Company company, LocalDate begining, LocalDate ending) {
+//		begining = LocalDate.of(tempDate, 1, 1);
+//		ending = LocalDate.of(tempDate, 12, 31);
+//
+//		for (Project project : company.getProjectsList()) {
+//			for (Work work : project.getWorksList()) {
+//				if (work.getDate().isAfter(begining) && (work.getDate().isBefore(ending))) {
+//					reportNewProject(project);
+//					reportNewProjectEmployee(work.getEmployee(), project);
+//				}
+//			}
+//
+//		}
+//		return null;
+//	}
+
+}
