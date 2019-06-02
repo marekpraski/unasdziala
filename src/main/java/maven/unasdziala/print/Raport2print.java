@@ -15,7 +15,6 @@ public class Raport2print {
 			for (String str : rp.createReportProject(proj)) {
 				System.out.println(str);
 			}
-			rp.clearReportList();
 		}
 	}
 
@@ -24,7 +23,6 @@ public class Raport2print {
 			for (String str : rp.createReportProject(proj, year)) {
 				System.out.println(str);
 			}
-			rp.clearReportList();
 		}
 	}
 
@@ -33,7 +31,6 @@ public class Raport2print {
 			for (String str : rp.createReportProject(proj, beg, end)) {
 				System.out.println(str);
 			}
-			rp.clearReportList();
 		}
 	}
 
