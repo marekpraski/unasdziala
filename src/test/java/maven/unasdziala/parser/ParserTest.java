@@ -1,5 +1,6 @@
 package maven.unasdziala.parser;
 
+import maven.unasdziala.model.Company;
 import org.junit.jupiter.api.Test;
 //import org.junit.Test;
 
@@ -12,6 +13,8 @@ public class ParserTest {
     public void listFiles() {
         Parser parser = new Parser("2012/01/Kowalski_Jan.xls");
         parser.runParser();
+        Company comp = parser.getCompany();
+        System.out.println("hello");
 //        List<File> fileList=parser.getExcelFiles();
 //        for(File file : fileList) {
 //            System.out.println(file.getName());

@@ -44,7 +44,8 @@ public class ReportEmployee {
 	public Set<Project> createEmployeeProjectList(Employee empl) {
 		Set<Project> listOfProjects = new HashSet<>();
 		for (Work work : empl.getWorksList()) {
-			listOfProjects.add(work.getProject());
+			if (work.getProject() != null)
+				listOfProjects.add(work.getProject());
 		}
 		return listOfProjects;
 	}
@@ -73,24 +74,26 @@ public class ReportEmployee {
 		return listOfFilesWithTimeLimit;
 	}
 
-	ModelReportEmployee mre = new ModelReportEmployee();
+	ModelReportEmployee mre;
 
 	public List<String> createReportEmployee(Employee empl) {
-		mre.appendList("Name and surname: " + this.nameAndSurnameCreator(empl));
-		mre.appendList("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
-		mre.appendList("Projects participated: ");
+		//mre = new ModelReportEmployee();
+		List<String> mre = new ArrayList<>();
+		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
+		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl) + " 100%");
+		mre.add("Projects participated: ");
 		this.createEmployeeProjectList(empl);
 		this.listOfProjects = this.createEmployeeProjectList(empl);
 		for (Project proj : listOfProjects) {
-			mre.appendList("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
+			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
 		}
-		mre.appendList("List of files: ");
+		mre.add("List of files: ");
 		for (String str : empl.getFilesList()) {
-			mre.appendList(str);
+			mre.add(str);
 		}
-		return mre.getListForReport();
+		return mre;
 
 	}
 public List<String> createReportEmployee(Employee empl, int year) {
@@ -132,7 +135,5 @@ public List<String> createReportEmployee(Employee empl, int year) {
 		return mre.getListForReport();
 	}
 	
-	public void clearReportList() {
-		mre.getListForReport().clear();
-	}
+	
 }
