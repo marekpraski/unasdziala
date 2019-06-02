@@ -58,7 +58,7 @@ public class ReportProject {
 		ModelReportProject mrp = new ModelReportProject();
 //		LocalDate beg = LocalDate.of(year, 01, 01);
 //		LocalDate end = LocalDate.of(year, 12, 31);
-		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Name: " + project.getName() + " for all years.");
 		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project) + " 100%");
 		mrp.appendList("Employees participated: ");
 
@@ -75,7 +75,7 @@ public class ReportProject {
 
 	public List<String> createReportProject(Project project, int year) {
 		ModelReportProject mrp = new ModelReportProject();
-		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Name: " + project.getName() + "for year: " + year);
 		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project, year) + " 100%");
 		mrp.appendList("Employees participated: ");
 
@@ -92,7 +92,7 @@ public class ReportProject {
 	
 	public List<String> createReportProject(Project project, LocalDate beg, LocalDate end) {
 		ModelReportProject mrp = new ModelReportProject();
-		mrp.appendList("Name: " + project.getName());
+		mrp.appendList("Name: " + project.getName() + "for period from: " + beg + " till: " + end);
 		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project, beg, end) + " 100%");
 		mrp.appendList("Employees participated: ");
 
