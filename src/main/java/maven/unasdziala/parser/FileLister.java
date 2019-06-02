@@ -3,12 +3,13 @@ package maven.unasdziala.parser;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.LinkedList;
 import java.util.List;
 
 public class FileLister {
 
-	public List<String> resultList;
-	public String pth;
+	private List<String> resultList = new LinkedList<>();
+	private String pth;
 
 
 	FileLister(String pth) {
@@ -18,7 +19,11 @@ public class FileLister {
 		
 
 	}
-	
+
+	public List<String> getResultList() {
+		return resultList;
+	}
+
 	private void listFiles(String path) {
 		File folder = new File(path);
 
@@ -26,7 +31,11 @@ public class FileLister {
 
 		for (File file : files) {
 			if (file.isFile()) {
-				this.resultList.add(file.getAbsolutePath());
+				if(file.getName().contains(".xlsx") || file.getName().contains(".xls") || file.getName().contains(".xlsb")) {
+					
+					this.resultList.add(file.getAbsolutePath());
+					
+				}
 			} else if (file.isDirectory()) {
 				listFiles(file.getAbsolutePath());
 				
