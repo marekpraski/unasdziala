@@ -34,11 +34,12 @@ public class ReportProject {
 		}
 		return a;
 	}
-	
+
 	public float sumProjectHours(Project project, LocalDate beg, LocalDate end) {
 		float a = 0;
 		for (Work work : project.getWorksList()) {
-			if (work.getDate().isEqual(beg) ||work.getDate().isEqual(end) || (work.getDate().isAfter(beg) && work.getDate().isBefore(end)))
+			if (work.getDate().isEqual(beg) || work.getDate().isEqual(end)
+					|| (work.getDate().isAfter(beg) && work.getDate().isBefore(end)))
 				a += work.getTimeSpent();
 		}
 		return a;
@@ -58,6 +59,9 @@ public class ReportProject {
 		ModelReportProject mrp = new ModelReportProject();
 //		LocalDate beg = LocalDate.of(year, 01, 01);
 //		LocalDate end = LocalDate.of(year, 12, 31);
+		LocalDate beg = LocalDate.now();
+		LocalDate end = LocalDate.of(1900, 01, 01);
+		
 		float sumH = this.sumProjectHours(project);
 		mrp.appendList("Name: " + project.getName() + " for all years.");
 		mrp.appendList("Project hours consumption: " + sumH);
@@ -69,13 +73,27 @@ public class ReportProject {
 			String name = entry.getKey().getName();
 			Float value = entry.getValue();
 
-			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "(" + String.format("%.02f", value/sumH) + "%)");
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "("
+					+ String.format("%.02f", value / sumH) + "%)");
+		}
+
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+
+			mrp.getListForReport().addAll(entry.getKey().getFilesList());
+			
+			for (Work work : entry.getKey().getWorksList()) {
+				if (work.getDate().isBefore(beg)) {
+					beg = work.getDate();
+				}
+				if (work.getDate().isAfter(end)) {
+					end = work.getDate();
+				}
+			}
+			
 		}
 		
-for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
-			
-			mrp.getListForReport().addAll(entry.getKey().getFilesList());
-		}
+		mrp.appendList("Period: " + beg + " - " + end);
+		
 		return mrp.getListForReport();
 	}
 
@@ -92,16 +110,17 @@ for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
 			String name = entry.getKey().getName();
 			Float value = entry.getValue();
 
-			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "(" + String.format("%.02f", value/sumH) + "%)");
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "("
+					+ String.format("%.02f", value / sumH) + "%)");
 		}
-		
+
 		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
-			
+
 			mrp.getListForReport().addAll(entry.getKey().getFilesList());
 		}
 		return mrp.getListForReport();
 	}
-	
+
 	public List<String> createReportProject(Project project, LocalDate beg, LocalDate end) {
 		ModelReportProject mrp = new ModelReportProject();
 		float sumH = this.sumProjectHours(project);
@@ -115,10 +134,11 @@ for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
 			String name = entry.getKey().getName();
 			Float value = entry.getValue();
 
-			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "(" + String.format("%.02f", value/sumH) + "%)");
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "("
+					+ String.format("%.02f", value / sumH) + "%)");
 		}
-			for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
-			
+		for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
+
 			mrp.getListForReport().addAll(entry.getKey().getFilesList());
 		}
 		return mrp.getListForReport();
@@ -161,7 +181,7 @@ for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
 		}
 
 	}
-	
+
 	private void createProjectEmployeeList(Project project, LocalDate beg, LocalDate end) {
 
 		for (Work work : project.getWorksList()) {
@@ -170,7 +190,8 @@ for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
 
 			if (this.listOfEmployees.containsKey(tempEmployee)) {
 				float finalTime = work.getTimeSpent() + listOfEmployees.get(tempEmployee);
-				if (work.getDate().isEqual(beg) ||work.getDate().isEqual(end) || (work.getDate().isAfter(beg) && work.getDate().isBefore(end))) {
+				if (work.getDate().isEqual(beg) || work.getDate().isEqual(end)
+						|| (work.getDate().isAfter(beg) && work.getDate().isBefore(end))) {
 					this.listOfEmployees.put(tempEmployee, finalTime);
 				}
 			} else {
@@ -180,7 +201,7 @@ for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
 		}
 
 	}
-	
+
 //	public float sumEmployeeProjectHours(Employee empl, Project proj) {
 //	float a = 0;
 //	for (Work work : empl.getWorksList()) {
