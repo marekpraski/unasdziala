@@ -30,4 +30,13 @@ public class ParserTest {
             System.out.println(file);
         }
     }
+
+    @Test
+    public void testParser() {
+        Parser parser = new Parser("C:\\Users\\student14\\IdeaProjects\\unasdziala\\");
+        parser.runParser();
+        Company com = parser.getCompany();
+        System.out.println("hello");
+
+    }
 }

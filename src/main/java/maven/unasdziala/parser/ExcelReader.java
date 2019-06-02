@@ -48,7 +48,7 @@ public class ExcelReader {
     }
 
     public String getEmployeeName() {
-        int slashPosition = path.lastIndexOf('/');
+        int slashPosition = path.lastIndexOf('\\');
         int dotPosition = path.lastIndexOf('.');
         String name = path.substring(slashPosition + 1, dotPosition);
         return name;

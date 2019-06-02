@@ -33,6 +33,10 @@ public class Employee {
 		return filesList;
 	}
 
+	public void addFile(String file) {
+		filesList.add(file);
+	}
+
 	public void setFilesList(List<String> filesList) {
 		this.filesList = filesList;
 	}

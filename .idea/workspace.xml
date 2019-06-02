@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="fbd3ea51-b212-432d-b7f7-8f2db8dc7811" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/Parser.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/Parser.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java" afterDir="false" />
     </list>
@@ -35,9 +38,22 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="278">
+              <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+              <folding>
+                <element signature="e#611#612#0" expanded="true" />
+                <element signature="e#626#627#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Project.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="214">
+            <state relative-caret-position="368">
               <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
               <folding>
                 <element signature="e#531#532#0" expanded="true" />
@@ -50,8 +66,8 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="32" selection-start-line="32" selection-end-line="32" />
+            <state relative-caret-position="176">
+              <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -68,11 +84,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/Parser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="255">
-              <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
+            <state relative-caret-position="278">
+              <caret line="60" column="43" lean-forward="true" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
               <folding>
                 <element signature="e#693#694#0" expanded="true" />
                 <element signature="e#724#725#0" expanded="true" />
@@ -86,6 +102,15 @@
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/AppTest.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="112">
+              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ExcelReaderTest.java">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="336">
@@ -94,11 +119,11 @@
           </provider>
         </entry>
       </file>
-      <file pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="240">
-              <caret line="16" selection-start-line="16" selection-end-line="16" />
+            <state relative-caret-position="262">
+              <caret line="38" selection-start-line="38" selection-end-line="38" />
               <folding>
                 <element signature="imports" expanded="true" />
               </folding>
@@ -137,12 +162,12 @@
       <list>
         <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/App.java" />
         <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ColumnHeaders.java" />
-        <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java" />
         <option value="$PROJECT_DIR$/pom.xml" />
-        <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Project.java" />
         <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/FileLister.java" />
+        <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java" />
         <option value="$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java" />
+        <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java" />
         <option value="$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/Parser.java" />
       </list>
     </option>
@@ -264,7 +289,7 @@
     </panes>
   </component>
   <component name="PropertiesComponent">
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559468958809" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1559474484828" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
   </component>
   <component name="RunDashboard">
@@ -279,7 +304,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="JUnit.ParserTest.listFiles">
+  <component name="RunManager" selected="JUnit.ParserTest.testParser">
     <configuration name="App" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="maven.unasdziala.App" />
       <module name="unasdziala" />
@@ -341,10 +366,27 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="ParserTest.testParser" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="unasdziala" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="maven.unasdziala.parser.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="maven.unasdziala.parser" />
+      <option name="MAIN_CLASS_NAME" value="maven.unasdziala.parser.ParserTest" />
+      <option name="METHOD_NAME" value="testParser" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="JUnit.ParserTest.listFiles" />
+        <item itemvalue="JUnit.ParserTest.testParser" />
         <item itemvalue="JUnit.ParserTest.testLister" />
+        <item itemvalue="JUnit.ParserTest.listFiles" />
         <item itemvalue="JUnit.ExcelReaderTest.getWorkTimessTest" />
         <item itemvalue="Application.App" />
       </list>
@@ -364,35 +406,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="ParserTest_listFiles - 2019.06.02 at 11h 19m 05s.xml">
-      <configuration name="ParserTest.listFiles" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 33m 01s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_listFiles - 2019.06.02 at 11h 21m 19s.xml">
-      <configuration name="ParserTest.listFiles" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 46m 15s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 33m 43s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 46m 23s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 35m 26s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 48m 17s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 35m 57s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 50m 38s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 39m 10s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 56m 44s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 39m 30s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 12h 56m 51s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_testLister - 2019.06.02 at 11h 40m 08s.xml">
-      <configuration name="ParserTest.testLister" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 13h 08m 27s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_listFiles - 2019.06.02 at 11h 47m 26s.xml">
-      <configuration name="ParserTest.listFiles" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 13h 16m 30s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
-    <history-entry file="ParserTest_listFiles - 2019.06.02 at 11h 49m 18s.xml">
-      <configuration name="ParserTest.listFiles" configurationId="JUnit" />
+    <history-entry file="ParserTest_testParser - 2019.06.02 at 13h 17m 18s.xml">
+      <configuration name="ParserTest.testParser" configurationId="JUnit" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -408,7 +450,7 @@
     <frame x="260" y="20" width="1400" height="996" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.25333333" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25333333" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
@@ -418,7 +460,7 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
       <window_info anchor="bottom" id="Run" order="2" weight="0.32915717" />
-      <window_info active="true" anchor="bottom" id="Debug" order="3" visible="true" weight="0.53986335" />
+      <window_info anchor="bottom" id="Debug" order="3" visible="true" weight="0.53986335" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.32915717" />
@@ -441,9 +483,9 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="java-line">
           <url>file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java</url>
-          <line>16</line>
+          <line>38</line>
           <properties />
-          <option name="timeStamp" value="6" />
+          <option name="timeStamp" value="13" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
@@ -484,17 +526,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="28" column="28" selection-start-line="28" selection-start-column="28" selection-end-line="28" selection-end-column="28" />
-          <folding>
-            <element signature="e#480#481#0" expanded="true" />
-            <element signature="e#507#508#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Company.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="128">
@@ -517,16 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="311">
           <caret line="363" selection-start-line="363" selection-end-line="363" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="32" selection-start-line="32" selection-end-line="32" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -555,13 +576,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ExcelReaderTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="336">
-          <caret line="57" column="48" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="48" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/FileLister.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="432">
@@ -573,19 +587,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="240">
-          <caret line="16" selection-start-line="16" selection-end-line="16" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Project.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="214">
+        <state relative-caret-position="368">
           <caret line="32" column="5" lean-forward="true" selection-start-line="32" selection-start-column="5" selection-end-line="32" selection-end-column="5" />
           <folding>
             <element signature="e#531#532#0" expanded="true" />
@@ -594,10 +598,45 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ExcelReaderTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="336">
+          <caret line="57" column="48" selection-start-line="57" selection-start-column="24" selection-end-line="57" selection-end-column="48" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/ExcelReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="50" column="48" selection-start-line="50" selection-start-column="48" selection-end-line="50" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/AppTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="112">
+          <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/model/Employee.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="278">
+          <caret line="36" column="28" selection-start-line="36" selection-start-column="28" selection-end-line="36" selection-end-column="28" />
+          <folding>
+            <element signature="e#611#612#0" expanded="true" />
+            <element signature="e#626#627#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/main/java/maven/unasdziala/parser/Parser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="91" column="36" selection-start-line="91" selection-start-column="36" selection-end-line="91" selection-end-column="36" />
+        <state relative-caret-position="278">
+          <caret line="60" column="43" lean-forward="true" selection-start-line="60" selection-start-column="43" selection-end-line="60" selection-end-column="43" />
           <folding>
             <element signature="e#693#694#0" expanded="true" />
             <element signature="e#724#725#0" expanded="true" />
@@ -605,6 +644,16 @@
             <element signature="e#1207#1208#0" expanded="true" />
             <element signature="e#2791#2801#0" expanded="true" />
             <element signature="e#2882#2891#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/test/java/maven/unasdziala/parser/ParserTest.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="262">
+          <caret line="38" selection-start-line="38" selection-end-line="38" />
+          <folding>
+            <element signature="imports" expanded="true" />
           </folding>
         </state>
       </provider>
