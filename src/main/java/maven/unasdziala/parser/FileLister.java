@@ -7,8 +7,8 @@ import java.util.List;
 
 public class FileLister {
 
-	public List<String> resultList;
-	public String pth;
+	private List<String> resultList;
+	private String pth;
 
 
 	FileLister(String pth) {
@@ -18,7 +18,11 @@ public class FileLister {
 		
 
 	}
-	
+
+	public List<String> getResultList() {
+		return resultList;
+	}
+
 	private void listFiles(String path) {
 		File folder = new File(path);
 

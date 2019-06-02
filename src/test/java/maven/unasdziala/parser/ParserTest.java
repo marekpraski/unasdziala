@@ -17,4 +17,14 @@ public class ParserTest {
 //            System.out.println(file.getName());
 //        }
     }
+
+    @Test
+    public void testLister() {
+        FileLister lister = new FileLister("C:\\Users\\student14\\IdeaProjects\\unasdziala\\2012\\");
+        List<String> resList = lister.getResultList();
+
+        for (String file : resList) {
+            System.out.println(file);
+        }
+    }
 }
