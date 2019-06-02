@@ -10,7 +10,7 @@ public class Raport2print {
 
 	private ReportProject rp;
 
-	public void printReport1(List<Project> projectList) {
+	public void printReport2(List<Project> projectList) {
 		for (Project proj : projectList) {
 			for (String str : rp.createReportProject(proj)) {
 				System.out.println(str);
@@ -18,7 +18,7 @@ public class Raport2print {
 		}
 	}
 
-	public void printReport1(List<Project> projectList, int year) {
+	public void printReport2(List<Project> projectList, int year) {
 		for (Project proj : projectList) {
 			for (String str : rp.createReportProject(proj, year)) {
 				System.out.println(str);
@@ -26,7 +26,7 @@ public class Raport2print {
 		}
 	}
 
-	public void printReport1(List<Project> projectList, LocalDate beg, LocalDate end) {
+	public void printReport2(List<Project> projectList, LocalDate beg, LocalDate end) {
 		for (Project proj : projectList) {
 			for (String str : rp.createReportProject(proj, beg, end)) {
 				System.out.println(str);

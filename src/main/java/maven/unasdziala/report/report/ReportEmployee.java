@@ -16,6 +16,16 @@ import maven.unasdziala.report.model.ModelReportEmployee;
 
 public class ReportEmployee {
 
+	public float sumEmployeeHours(Employee empl, LocalDate beg, LocalDate end) {
+		float a = 0;
+		if (work.getDate().isAfter(beg) && work.getDate().isBefore(end)) {
+			for (Work work : empl.getWorksList()) {
+				a += work.getTimeSpent();
+			}
+		}
+		return a;
+	}
+
 	public float sumEmployeeHours(Employee empl) {
 		float a = 0;
 		for (Work work : empl.getWorksList()) {
@@ -29,6 +39,18 @@ public class ReportEmployee {
 		for (Work work : empl.getWorksList()) {
 			if (work.getProject().equals(proj)) {
 				a += work.getTimeSpent();
+			}
+		}
+		return a;
+	}
+
+	public float sumEmployeeProjectHours(Employee empl, Project proj, LocalDate beg, LocalDate end) {
+		float a = 0;
+		for (Work work : empl.getWorksList()) {
+			if (work.getDate().isAfter(beg) && work.getDate().isBefore(end)) {
+				if (work.getProject().equals(proj)) {
+					a += work.getTimeSpent();
+				}
 			}
 		}
 		return a;
@@ -59,15 +81,16 @@ public class ReportEmployee {
 		}
 		return listOfProjects;
 	}
-	
+
 	private List<String> listOfFilesWithTimeLimit;
-	
-	public List<String> createFilesListWithTimeLimit(Employee empl, LocalDate beg, LocalDate end){
+
+	public List<String> createFilesListWithTimeLimit(Employee empl, LocalDate beg, LocalDate end) {
 		listOfFilesWithTimeLimit = new ArrayList<>();
-		for(String str: empl.getFilesList() ){
+		for (String str : empl.getFilesList()) {
 			String[] fileNameSplitted = str.split(File.separator);
-			LocalDate dateOfFile = LocalDate.of(Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 3]), Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 2]), 15);
-			if(dateOfFile.isAfter(beg) && dateOfFile.isBefore(end)){
+			LocalDate dateOfFile = LocalDate.of(Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 3]),
+					Integer.parseInt(fileNameSplitted[fileNameSplitted.length - 2]), 15);
+			if (dateOfFile.isAfter(beg) && dateOfFile.isBefore(end)) {
 				listOfFilesWithTimeLimit.add(str);
 			}
 		}
@@ -77,7 +100,7 @@ public class ReportEmployee {
 	ModelReportEmployee mre;
 
 	public List<String> createReportEmployee(Employee empl) {
-		//mre = new ModelReportEmployee();
+		// mre = new ModelReportEmployee();
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
 		mre.add("Amount of hours worked: " + this.sumEmployeeHours(empl));
@@ -96,7 +119,8 @@ public class ReportEmployee {
 		return mre;
 
 	}
-public List<String> createReportEmployee(Employee empl, int year) {
+
+	public List<String> createReportEmployee(Employee empl, int year) {
 		LocalDate beg = LocalDate.of(year, 01, 01);
 		LocalDate end = LocalDate.of(year, 12, 31);
 		List<String> mre = new ArrayList<>();
@@ -117,7 +141,7 @@ public List<String> createReportEmployee(Employee empl, int year) {
 		mre.add("Period: " + beg + " - " + end);
 		return mre;
 	}
-	
+
 	public List<String> createReportEmployee(Employee empl, LocalDate beg, LocalDate end) {
 		List<String> mre = new ArrayList<>();
 		mre.add("Name and surname: " + this.nameAndSurnameCreator(empl));
@@ -126,7 +150,7 @@ public List<String> createReportEmployee(Employee empl, int year) {
 		this.createEmployeeProjectList(empl, beg, end);
 		this.listOfProjects = this.createEmployeeProjectList(empl, beg, end);
 		for (Project proj : listOfProjects) {
-			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj)
+			mre.add("Project name: " + proj.getName() + " hours: " + this.sumEmployeeProjectHours(empl, proj, beg, end)
 					+ " percent of all time spent: "
 					+ 100 * (this.sumEmployeeProjectHours(empl, proj) / this.sumEmployeeHours(empl)) + "%");
 		}
@@ -135,9 +159,8 @@ public List<String> createReportEmployee(Employee empl, int year) {
 			mre.add(str);
 		}
 		mre.add("Period: " + beg + " - " + end);
-		
+
 		return mre;
 	}
-	
-	
+
 }
