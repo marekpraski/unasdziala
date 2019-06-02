@@ -121,17 +121,18 @@ public class ExcelReader {
         return workTimes;
     }
 
-    private float getWorkTime(Row row) {
+    private Double getWorkTime(Row row) {
         Double workTime = 0.0;
         Integer column = ColumnHeaders.CZAS.getColumnIndex();
         Cell cell = row.getCell(column);
         if (cell != null) {
-            cell.setCellType(CellType.NUMERIC);
-            workTime = cell.getNumericCellValue();
+            //cell.setCellType(CellType.NUMERIC);
+            if (cell.getCellType().equals(CellType.NUMERIC) && cell.getNumericCellValue()<24)
+                workTime = cell.getNumericCellValue();
         } else {
             //handle error, to be implemented
         }
-        return workTime.floatValue();
+        return workTime;
     }
 
     private String getWork(Row row) {
@@ -154,23 +155,31 @@ public class ExcelReader {
         if (cell != null) {
             cell.setCellType(CellType.NUMERIC);
             date = cell.getDateCellValue();
+            return date.toInstant()
+                    .atZone(ZoneId.systemDefault())
+                    .toLocalDate();
         } else {
             //handle error, to be implemented
+            return null;
         }
-        return date.toInstant()
-                .atZone(ZoneId.systemDefault())
-                .toLocalDate();
+
     }
 
     public List<SingleRowData> getRowDataList() {
         List<SingleRowData> worksInFile = new ArrayList();
         for (Sheet sheet : wb) {
             for (Row row : sheet) {
-                if (row != null && row.getRowNum() > 0) {
+                if (row != null && row.getRowNum() > 0 && row.getLastCellNum() >= 3) {
                     SingleRowData rowData = new SingleRowData();
-                    rowData.setTimeSpent(getWorkTime(row));
+                    Double workTime = getWorkTime(row);
+                    if (workTime == null)
+                        continue;
+                    rowData.setTimeSpent(workTime.floatValue());
                     rowData.setWorkName(getWork(row));
-                    rowData.setDate(getDate(row));
+                    LocalDate date = getDate(row);
+                    if (date == null)
+                        continue;
+                    rowData.setDate(date);
                     rowData.setEmployeeName(getEmployeeName());
                     rowData.setProjectName(sheet.getSheetName());
                     rowData.setFileName(path);
