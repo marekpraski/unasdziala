@@ -1,11 +1,17 @@
 package maven.unasdziala;
+import java.util.Scanner;
+
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.CommandLineParser;
 import org.apache.commons.cli.DefaultParser;
 import org.apache.commons.cli.Options;
 import org.apache.commons.cli.ParseException;
 
-import java.util.Scanner;
+import maven.unasdziala.model.Company;
+import maven.unasdziala.model.Employee;
+import maven.unasdziala.parser.Parser;
+import maven.unasdziala.print.Raport1print;
+import maven.unasdziala.report.report.ReportEmployee;
 
 public class Console {
 	public static void main(String[] args)throws ParseException {
@@ -18,6 +24,12 @@ public class Console {
 
 		boolean end = false;
 		
+		Parser excelParser = new Parser("Kowalski_Jan.xls");
+		excelParser.runParser();
+		
+		Company comp = excelParser.getCompany();
+		ReportEmployee reportEmployee = new ReportEmployee();
+		Raport1print r1p = new Raport1print(reportEmployee);
 
 		do {
 			Scanner scan = new Scanner(System.in);
@@ -30,6 +42,10 @@ public class Console {
 			switch (choice) {
 			case 1:{
 				System.out.println("This is raport number 1");
+//				for(Employee emp: comp.getEmployeesList()) {
+//					System.out.println(emp.toString());
+//				}
+				r1p.printReport1(comp.getEmployeesList());
 				break;}
 			case 2:{
 				System.out.println("This is raport number 2");
