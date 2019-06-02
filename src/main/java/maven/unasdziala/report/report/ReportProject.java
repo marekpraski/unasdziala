@@ -58,8 +58,9 @@ public class ReportProject {
 		ModelReportProject mrp = new ModelReportProject();
 //		LocalDate beg = LocalDate.of(year, 01, 01);
 //		LocalDate end = LocalDate.of(year, 12, 31);
+		float sumH = this.sumProjectHours(project);
 		mrp.appendList("Name: " + project.getName() + " for all years.");
-		mrp.appendList("Amount of hours worked: " + this.sumProjectHours(project) + " 100%");
+		mrp.appendList("Amount of hours worked: " + sumH + " 100%");
 		mrp.appendList("Employees participated: ");
 
 		this.createProjectEmployeeList(project);
@@ -68,7 +69,7 @@ public class ReportProject {
 			String name = entry.getKey().getName();
 			Float value = entry.getValue();
 
-			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours");
+			mrp.appendList("Employee " + name + "has spent on the project: " + value + " hours" + "(" + value/sumH + "%)");
 		}
 		
 for (Map.Entry<Employee, Float> entry : listOfEmployees.entrySet()) {
