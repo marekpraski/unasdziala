@@ -31,7 +31,11 @@ public class FileLister {
 
 		for (File file : files) {
 			if (file.isFile()) {
-				this.resultList.add(file.getAbsolutePath());
+				if(file.getName().contains(".xlsx") || file.getName().contains(".xls") || file.getName().contains(".xlsb")) {
+					
+					this.resultList.add(file.getAbsolutePath());
+					
+				}
 			} else if (file.isDirectory()) {
 				listFiles(file.getAbsolutePath());
 				
